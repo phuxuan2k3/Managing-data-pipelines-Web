@@ -14,7 +14,7 @@ const nodes = [
 	{ name: "Tao", isInCanvas: false },
 	{ name: "Ne", isInCanvas: false }
 ]; // Danh sách các node {name, isInCanvas (bool)} chưa được thêm vào canvas
-const canvasNodes = []; // Danh sách các node với vị trí, bán kính và tên (trong canvas)
+const canvasNodes = {}; // Danh sách các node: { tên: x, y, bán kính, tên }
 const links = []; // Danh sách các liên kết giữa các node
 
 // Kéo thả
@@ -40,12 +40,14 @@ function addCanvasNode(name) {
 
 	// Hàm để kiểm tra xem node mới có cách đủ xa các node khác không
 	function isNodeTooClose(newNode) {
-		for (let node of canvasNodes) {
-			const dx = node.x - newNode.x;
-			const dy = node.y - newNode.y;
-			const distance = Math.sqrt(dx * dx + dy * dy);
-			if (distance < node.radius + newNode.radius + pixels) { // Cách nhau ít nhất 50px
-				return true;
+		for (let key in canvasNodes) {
+			if (canvasNodes.hasOwnProperty(key)) {
+				const dx = canvasNodes[key].x - newNode.x;
+				const dy = canvasNodes[key].y - newNode.y;
+				const distance = Math.sqrt(dx * dx + dy * dy);
+				if (distance < canvasNodes[key].radius + newNode.radius + pixels) { // Cách nhau ít nhất 50px
+					return true;
+				}
 			}
 		}
 		return false;
@@ -60,7 +62,7 @@ function addCanvasNode(name) {
 	} while (isNodeTooClose(newNode));
 
 	// Thêm node mới vào danh sách nodes
-	canvasNodes.push(newNode);
+	canvasNodes[name] = newNode;
 
 	// Vẽ lại canvas với node mới
 	updateCanvas();
@@ -73,8 +75,7 @@ function addLink(link) {
 }
 
 function removeFromCanvas(nodeName) {
-	const index = canvasNodes.findIndex((obj) => obj.name === nodeName);
-	canvasNodes.splice(index, 1);
+	delete canvasNodes[nodeName];
 	updateCanvas();
 }
 
@@ -133,7 +134,7 @@ function updateCanvas() {
 	toNodeSelect.innerHTML = ''; // Xóa các option cũ
 
 	// Cập nhật node
-	canvasNodes.forEach((node) => {
+	Object.values(canvasNodes).forEach((node) => {
 		drawNode(node);
 
 		// Thêm vào dropdown để chọn node
@@ -150,7 +151,9 @@ function updateCanvas() {
 
 	// Cập nhật liên kết
 	links.forEach((link) => {
-		drawArrow(link.from, link.to);
+		const fromNode = canvasNodes[link.from];
+		const toNode = canvasNodes[link.to];
+		drawArrow(fromNode, toNode);
 	});
 }
 
@@ -238,7 +241,7 @@ window.onload = function () {
 
 		// Nếu chuột trái => di chuyển node
 		if (e.button === 0) {
-			canvasNodes.forEach((node) => {
+			Object.values(canvasNodes).forEach((node) => {
 				if (isInsideNode(mouseX, mouseY, node)) {
 					isDragging = true;
 					selectedNode = node;
@@ -280,12 +283,11 @@ window.onload = function () {
 
 	// Hàm cho nút thêm liên kết mới
 	addLinkButton.onclick = function () {
-		const fromNode = fromNodeSelect.value;
-		const toNode = toNodeSelect.value;
+		const fromNodeName = fromNodeSelect.value;
+		const toNodeName = toNodeSelect.value;
 
-		if (fromNode && toNode && fromNode !== toNode) {
-			addLink({ from: fromNode, to: toNode });
-			updateCanvas();
+		if (fromNodeName && toNodeName && fromNodeName !== toNodeName) {
+			addLink({ from: fromNodeName, to: toNodeName });
 		}
 	};
 
