@@ -2,8 +2,7 @@
 // const app = express();
 // require("dotenv").config();
 // const ENV = process.env;
-// const path = require("path");
-// const configEV = require("./config/configEV");
+
 // const configStaticResource = require("./config/configStaticResource");
 // const configSession = require("./config/configSession");
 // const { NotFound, HandleError } = require("./middlewares/ErrorHandling");
@@ -16,7 +15,6 @@
 
 // // Config
 // app.use(express.urlencoded({ extended: true }));
-// configEV(app, path.join(__dirname, "views"));
 // configStaticResource(app, path.join(__dirname, "public"));
 // configSession(app);
 // app.use(bodyParser.json());
@@ -37,8 +35,6 @@
 // //Router
 // app.use("/api", require("./routers/api.r"));
 
-// app.use("/", require("./routers/site.r"));
-
 // //Handle error middleware
 // app.use(NotFound);
 // app.use(HandleError);
@@ -47,13 +43,20 @@
 
 // appSSL.listen(ENV.WEBPORT);
 
+const path = require("path");
+const configEV = require("./config/configEV");
+
 const app = require("express")();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const port = process.env.PORT || 8080;
-app.get("/", function (req, res) {
-  res.sendfile("index.html");
+
+configEV(app, path.join(__dirname, "views"));
+
+app.get("/", (req, res) => {
+  res.render("index");
 });
+
 server.listen(port, function () {
   console.log(`Listening on port ${port}`);
 });
