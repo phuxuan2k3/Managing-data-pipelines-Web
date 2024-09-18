@@ -46,16 +46,20 @@
 const path = require("path");
 const configEV = require("./config/configEV");
 
+const configStaticResource = require("./config/configStaticResource");
+
 const app = require("express")();
+
+const siteRouter = require("./routers/site.r");
+
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const port = process.env.PORT || 8080;
 
+configStaticResource(app, path.join(__dirname, "public"));
 configEV(app, path.join(__dirname, "views"));
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.get("/", siteRouter);
 
 server.listen(port, function () {
   console.log(`Listening on port ${port}`);
