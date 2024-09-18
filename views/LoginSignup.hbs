@@ -1,0 +1,136 @@
+<div class="container-fluid">
+    <div class="bg-light row justify-content-center align-items-center g-2  vh-100 m-5">
+        <div class="col-7 content">
+            <div class=" m-5 loginContent">
+                <p class="h1 mb-5">Welcome to SGX Auto</p>
+                <form action="/login" method="POST" class="loginForm">
+                    <div class="mb-4">
+                        <label for="loginUsername" class="form-label">Username</label>
+                        <input name="Username" type="text" class="form-control w-75" id="loginUsername"
+                            placeholder="Enter username">
+                    </div>
+                    <div class="mb-4">
+                        <label for="loginPassword" class="form-label ">Password</label>
+                        <input name="Password" type="password" id="loginPassword" class="form-control  w-75 "
+                            placeholder="Enter password" />
+                    </div>
+                    <div class="mb-4">
+                        <input name="Remember" class="form-check-input me-2" type="checkbox" value="" id="rememberMe" />
+                        <label class="form-check-label" for="rememberMe">
+                            Remember me
+                        </label>
+                    </div>
+                    <div class="mb-4 createAccount">
+                        <a class="createAccountLink" onclick="changeForm()">Create an account</a>
+                    </div>
+
+                    <div class="mb-4" id="loginMessage" style="display: none;color: #ff0000;">
+                        <i class="fa-solid fa-square-xmark"></i>
+                        <span class="message">{{loginMsg}}</span>
+                    </div>
+                    <div class="mb-4">
+                        <button type="submit" class="btn rounded-5 bgPrimary text-light w-25 loginButton">Log
+                            in</button>
+                    </div>
+                    <div class="divider d-flex align-items-center my-4 col-7">
+                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="mb-1 ">
+                            <a class="btn btn-primary btn-lg btn-block me-2 " style="background-color: #3b5998"
+                                href="/login/federated/facebook" role="button">
+                                <i class="fab fa-facebook-f me-2"></i>Sign in with Facebook
+                            </a>
+                        </div>
+                        <div class="mb-4 ">
+                            <a class="btn btn-primary btn-lg btn-block" style="background-color: #dd4b39"
+                                href="/login/federated/google" role="button">
+                                <i class="fab fa-google me-2"></i>Sign in with Google</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class=" m-5 signupContent d-none mt-1">
+                <div class="heading text-center mb-2">
+                    <p class="h2">Create an account</p>
+                    <p class="fs-8">Already have an account?
+                        <a href="#!" onclick="changeForm()">Log in</a>
+                    </p>
+
+                </div>
+                <form action="#" class="m-5 signupForm mt-1" id="registerForm">
+                    <div class="mb-2">
+                        <label for="signupUsername" class="form-label">What is your username?</label>
+                        <input required name="username" type="text" class="form-control w-100 validation-username"
+                            id="signupUsername" placeholder="Enter your username">
+                    </div>
+                    <div class="mb-2">
+                        <label for="signupPassword" class="form-label ">Create a password</label>
+                        <input required name="password" type="password" id="signupPassword"
+                            class="form-control  w-100 validation-password" placeholder="Enter your password" />
+                    </div>
+                    <div class="row col-12 mb-2">
+                        <div class="col-6">
+                            <label for="firstname" class="form-label">First name</label>
+                            <input required name="firstname" type="text" class="form-control w-100 validation-firstname"
+                                id="firstname" placeholder="Enter your first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="lastname" class="form-label">Last name</label>
+                            <input required name="lastname" type="text" class="form-control w-100 validation-lastname"
+                                id="lastname" placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="phonenumber" class="form-label">What's your phone number?</label>
+                        <input name="phonenumber" type="text" class="form-control w-100 validation-phone"
+                            id="phonenumber" placeholder="Enter your phone number">
+                    </div>
+                    <div class="mb-2">
+                        <label for="dob" class="form-label">What's your date of birth?</label>
+                        <input required name="dob" type="date" class="form-control w-100 validation-dob" id="dob"
+                            placeholder="Enter your date of birth">
+                    </div>
+                    <div class="mb-2">
+                        <label for="address" class="form-label">What's your address?</label>
+                        <input name="address" type="text" class="form-control w-100" id="address"
+                            placeholder="Enter your address">
+                    </div>
+                    <div class="mb-2">
+                        <input class="form-check-input me-2" type="checkbox" value="" required id="policy" />
+                        <label class="form-check-label" for="policy">
+                            By creating an account, you agree to the Terms of use and Privacy Policy.
+                        </label>
+                    </div>
+                    <div class="mb-2">
+                        <button type="submit" class="btn rounded-5 bgPrimary text-light w-100 loginButton">Create an
+                            account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-5 h-100 m-0 p-0">
+            <div id="carousel" class="carousel slide h-100" data-bs-ride="carousel">
+                <div class="carousel-inner h-100">
+                    <div class="carousel-item active loginImage h-100">
+                        <img src="https://wallpaperaccess.com/full/462025.jpg" class=" w-100" alt="...">
+                    </div>
+                    <div class="carousel-item loginImage h-100">
+                        <img src="https://wallpaperaccess.com/full/1662265.jpg" class=" w-100" alt="...">
+                    </div>
+                    <div class="carousel-item loginImage h-100">
+                        <img src="https://i.pinimg.com/564x/12/9c/08/129c085e41afa08d481439e117735057.jpg"
+                            class=" w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#if isRegister}}
+<script>
+    let isRegister = {{ isRegister }};
+</script>
+{{/if}}
