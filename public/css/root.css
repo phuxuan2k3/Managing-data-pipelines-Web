@@ -7,14 +7,116 @@ body {
   background-color: #f0f0f0;
 }
 
-canvas {
+#myCanvas {
   border: 1px solid black;
 }
 
-.node {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
+#sidebar-left {
+  width: 200px;
+  background-color: #f4f4f4;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+#sidebar-left h2 {
+  margin-top: 0;
+}
+
+#sidebar-left ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* Cho phép các mục bao quanh theo chiều ngang */
+}
+
+#sidebar-left ul li {
+  background-color: #368738;
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  width: 100%;
+  /* Chiều rộng của mỗi ô */
+  height: 40px;
+  /* Chiều cao của mỗi ô */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#sidebar-left ul li.added {
+  background-color: #8eb918;
+}
+
+#sidebar-left ul li:hover {
+  background-color: #45a049;
+}
+
+#sidebar-left ul li.added:hover {
+  background-color: #64830e;
+}
+
+#sidebar-left ul li button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Sidebar bên phải cho danh sách liên kết */
+#sidebar-right {
+  width: 300px;
+  background-color: #f4f4f4;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#sidebar-right table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#sidebar-right table th,
+#sidebar-right table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+#sidebar-right table th {
+  background-color: #ddd;
+}
+
+#sidebar-right button {
+  padding: 5px 10px;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+#sidebar-right button:hover {
+  background-color: #ff2f1f;
+}
+
+/* Form thêm liên kết mới */
+#add-link-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }

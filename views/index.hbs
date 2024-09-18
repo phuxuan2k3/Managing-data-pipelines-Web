@@ -1,1 +1,31 @@
-<canvas id="myCanvas"></canvas>
+ <!-- Sidebar trái hiển thị danh sách tên node -->
+<div id="sidebar-left">
+    <h2>Nodes</h2>
+    <ul id="nodeList"></ul>
+</div>
+
+<!-- Nội dung chính bao gồm canvas -->
+<div id="main-content">
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+</div>
+
+<!-- Sidebar phải hiển thị danh sách liên kết -->
+<div id="sidebar-right">
+    <h2>Links</h2>
+    <table id="linksTable">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <!-- Form để thêm liên kết mới -->
+    <div id="add-link-form">
+        <select id="fromNodeSelect"></select>
+        <select id="toNodeSelect"></select>
+        <button id="addLinkButton">Add Link</button>
+    </div>
+</div>

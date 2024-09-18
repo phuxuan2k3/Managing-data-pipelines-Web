@@ -5,23 +5,23 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/root.css" />
     {{#if cssFile}}
-      <link rel="stylesheet" href="/css/{{cssFile}}" />
+    <link rel="stylesheet" href="/css/{{cssFile}}" />
     {{/if}}
   </head>
 
   <body>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
 
     {{{body}}}
     {{#if jsFile}}
-      <script src="/js/{{jsFile}}"></script>
+    <script src="/js/{{jsFile}}"></script>
     {{/if}}
 
-    <script src="/js/code.js"></script>
+    <script src="/js/code.js" type="module"></script>
+    <script src="/js/subcode.js" type="module"></script>
   </body>
 
 </html>
